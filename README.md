@@ -2,7 +2,7 @@
 
 **Clasifica automáticamente tickets de soporte técnico por categoría y prioridad, sugiere una primera solución y guarda todo en SQL**, para que el técnico sepa qué atender primero.
 
-Basado en problemas reales que atendí en el soporte de un local gamer (Gameclub): mouse que no responde, cámaras sin imagen, PCs que se apagan, el local sin internet…
+Basado en problemas reales que atendí en el soporte de un local gamer: mouse que no responde, cámaras sin imagen, PCs que se apagan, el local sin internet, etc.
 
 ## Ejemplo
 
@@ -29,8 +29,6 @@ categoria   | alta | media | baja | total
 perifericos | ...  | ...   | ...  | ...
 ```
 
-> 📸 Tip: reemplaza esta sección con una captura de tu terminal después de ejecutarlo.
-
 ## Tecnologías
 
 - **Python** (solo biblioteca estándar: `csv`, `sqlite3`, `urllib`, `argparse`)
@@ -50,7 +48,7 @@ perifericos | ...  | ...   | ...  | ...
    ```bash
    python clasificador.py
    ```
-4. (Opcional) Prueba un ticket a mano, o ejecuta sin IA con reglas de palabras clave:
+4. (Si deseas) Prueba un ticket a mano, o ejecuta sin IA con reglas de palabras clave:
    ```bash
    python clasificador.py --probar "la cámara no muestra imagen"
    ```
@@ -73,7 +71,7 @@ data/tickets.csv              30 tickets de ejemplo
 
 ## Qué aprendí y qué mejoraría
 
-- **El prompt importa más que el código.** Definir con ejemplos qué es prioridad "alta" (afecta a varios equipos o hay riesgo de daño) hizo las respuestas mucho más consistentes que solo pedir "asigna una prioridad".
+- **El prompt importa más que el código.** Definir con ejemplos qué es prioridad "alta", como lo sería: "afecta a varios equipos o hay riesgo de daño", hizo las respuestas mucho más consistentes que solo pedir "asigna una prioridad".
 - **No confiar en la salida del modelo.** Pedir JSON con un esquema y validar los valores antes de guardarlos evita datos basura en la base de datos.
 - **Comparar con una línea base.** El clasificador por palabras clave se equivoca en casos como "el software de *control* de tiempo" (lo marca como periférico); la IA entiende el contexto.
 - **Mejoras:** medir la precisión contra tickets etiquetados a mano, guardar el historial de clasificaciones por modelo para compararlos, probar MySQL y hacer un pequeño panel web con los resultados.
